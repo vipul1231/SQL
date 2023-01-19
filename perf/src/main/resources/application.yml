@@ -1,0 +1,36 @@
+server:
+  port: 8085
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/dc1
+    username: postgres
+    password: password
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 300000
+      max-lifetime: 1200000
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      org.hibernate:
+        naming-strategy: #org.hibernate.cfg.ImprovedNamingStrategy
+        jdbc:
+          lob:
+            non_contextual_creation: true
+            show-sql: false
+          time_zone: UTC
+
+app:
+  resource:
+    file:
+      path: /home
+    urls:
+      - name: des
+        end-point: https://customspoc.cargoes.com/des
+        username: root
